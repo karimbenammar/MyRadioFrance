@@ -1,0 +1,12 @@
+query Shows($station: StationsEnum!, $limit: Int) {
+    shows(station: $station, first: $limit) {
+        edges {
+            cursor
+            node {
+                id
+                title
+                url
+            }
+        }
+    }
+}
