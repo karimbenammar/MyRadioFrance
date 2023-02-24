@@ -1,6 +1,9 @@
 package com.example.myradiofrance.presentation
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -8,32 +11,35 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.apollographql.apollo3.api.Optional
 import com.example.myradiofrance.data.Shows
 import com.example.myradiofrance.presentation.ShowsViewModel.Companion.ITEMS_LIMIT
-import com.example.type.StationsEnum
 
 @Composable
 fun ShowsScreen(
     state: ShowsViewModel.ShowsState,
-    onPaginate: (StationsEnum, Optional<Int?>, Optional<String?>) -> Unit
+    onPaginate: (Optional<Int?>, Optional<String?>) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         val infiniteListState = rememberLazyListState()
-        LazyColumn(state = infiniteListState, modifier = Modifier.fillMaxSize()) {
-            items(state.shows.edges) { show ->
-                ShowItem(show = show.node)
+        LazyColumn(
+            state = infiniteListState,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(state.shows.edges) { showEdge ->
+                ShowItem(show = showEdge.node)
             }
-            item {
-                if (state.isLoading) {
-                    Row(
+            if (state.isLoading) {
+                item {
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp),
-                        horizontalArrangement = Arrangement.Center
+                        contentAlignment = Alignment.Center
                     ) {
                         CircularProgressIndicator()
                     }
@@ -42,7 +48,6 @@ fun ShowsScreen(
         }
         if (infiniteListState.isScrolledToTheEnd() && !state.isLoading) {
             onPaginate(
-                StationsEnum.FRANCEINTER,
                 Optional.present(ITEMS_LIMIT),
                 Optional.present(state.shows.edges.last().cursor)
             )

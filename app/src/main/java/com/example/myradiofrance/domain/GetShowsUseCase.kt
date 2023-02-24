@@ -9,7 +9,11 @@ class GetShowsUseCase(
     private val showsClient: ShowsClient
 ) {
 
-    suspend fun execute(station: StationsEnum, limit: Optional<Int?>, after: Optional<String?>): Shows {
+    suspend fun execute(
+        station: StationsEnum,
+        limit: Optional<Int?>,
+        after: Optional<String?>
+    ): Shows {
         return showsClient.getShows(station, limit, after)
     }
 }

@@ -5,5 +5,9 @@ import com.example.myradiofrance.data.Shows
 import com.example.type.StationsEnum
 
 interface ShowsClient {
-    suspend fun getShows(station: StationsEnum, limit: Optional<Int?>, after: Optional<String?>): Shows
+    suspend fun getShows(
+        station: StationsEnum,
+        limit: Optional<Int?>,
+        after: Optional<String?>
+    ): Shows
 }

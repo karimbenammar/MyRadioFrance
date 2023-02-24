@@ -1,5 +1,6 @@
 package com.example.myradiofrance.presentation
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
@@ -15,17 +16,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowsViewModel @Inject constructor(
-    private val getShowsUseCase: GetShowsUseCase
+    private val getShowsUseCase: GetShowsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(ShowsState())
     val state = _state.asStateFlow()
+    val station = savedStateHandle.get<StationsEnum>(BRAND_ID_ARGUMENT) ?: StationsEnum.UNKNOWN__
 
     init {
-        fetchShows(StationsEnum.FRANCEINTER, Optional.present(ITEMS_LIMIT), Optional.absent())
+        fetchShows(Optional.present(ITEMS_LIMIT), Optional.absent())
     }
 
-    fun fetchShows(station: StationsEnum, limit: Optional<Int?>, after: Optional<String?>) {
+    fun fetchShows(limit: Optional<Int?>, after: Optional<String?>) {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             _state.update {
@@ -50,5 +53,6 @@ class ShowsViewModel @Inject constructor(
 
     companion object {
         const val ITEMS_LIMIT = 5
+        const val BRAND_ID_ARGUMENT = "brandId"
     }
 }

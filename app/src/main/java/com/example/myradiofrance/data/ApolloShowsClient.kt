@@ -8,9 +8,13 @@ import com.example.type.StationsEnum
 
 class ApolloShowsClient(
     private val apolloClient: ApolloClient
-): ShowsClient {
+) : ShowsClient {
 
-    override suspend fun getShows(station: StationsEnum, limit: Optional<Int?>, after: Optional<String?>): Shows {
+    override suspend fun getShows(
+        station: StationsEnum,
+        limit: Optional<Int?>,
+        after: Optional<String?>
+    ): Shows {
         return apolloClient
             .query(ShowsQuery(station, limit, after))
             .execute()
