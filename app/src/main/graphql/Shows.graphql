@@ -1,5 +1,5 @@
-query Shows($station: StationsEnum!, $limit: Int) {
-    shows(station: $station, first: $limit) {
+query Shows($station: StationsEnum!, $limit: Int, $after: String) {
+    shows(station: $station, first: $limit, after: $after) {
         edges {
             cursor
             node {

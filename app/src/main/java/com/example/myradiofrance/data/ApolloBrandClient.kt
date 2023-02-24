@@ -17,8 +17,4 @@ class ApolloBrandClient(
             ?.mapNotNull { it?.toBrand() }
             ?: emptyList()
     }
-
-    override suspend fun getShows(station: StationsEnum, limit: Int): Shows {
-        TODO("Not yet implemented")
-    }
 }

@@ -2,8 +2,11 @@ package com.example.myradiofrance.di
 
 import com.apollographql.apollo3.ApolloClient
 import com.example.myradiofrance.data.ApolloBrandClient
+import com.example.myradiofrance.data.ApolloShowsClient
 import com.example.myradiofrance.domain.BrandClient
 import com.example.myradiofrance.domain.GetBrandsUseCase
+import com.example.myradiofrance.domain.GetShowsUseCase
+import com.example.myradiofrance.domain.ShowsClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +33,19 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideShowsClient(apolloClient: ApolloClient): ShowsClient {
+        return ApolloShowsClient(apolloClient)
+    }
+
+    @Provides
+    @Singleton
     fun provideGetBrandsUseCase(brandClient: BrandClient): GetBrandsUseCase {
         return GetBrandsUseCase(brandClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetShowsUseCase(showsClient: ShowsClient): GetShowsUseCase {
+        return GetShowsUseCase(showsClient)
     }
 }
