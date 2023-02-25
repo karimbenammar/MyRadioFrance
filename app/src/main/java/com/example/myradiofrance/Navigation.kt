@@ -31,7 +31,7 @@ fun Navigation(navController: NavHostController) {
         ) {
             val viewModel = hiltViewModel<ShowsViewModel>()
             val state = viewModel.state.collectAsState()
-            ShowsScreen(state.value, viewModel::fetchShows)
+            ShowsScreen(state.value, viewModel::fetchShows, navController)
         }
     }
 }

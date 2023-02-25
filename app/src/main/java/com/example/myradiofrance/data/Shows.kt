@@ -10,7 +10,8 @@ data class Shows(
         data class Show(
             val id: String,
             val title: String,
-            val url: String
+            val url: String,
+            val standFirst: String
         )
     }
 }

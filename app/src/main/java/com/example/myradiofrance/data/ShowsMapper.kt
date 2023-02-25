@@ -11,7 +11,7 @@ fun ShowsQuery.Shows.toShows(): Shows {
 fun ShowsQuery.Edge.toEdge(): Shows.ShowEdge {
     return Shows.ShowEdge(
         cursor = cursor,
-        node = node?.toShow() ?: Shows.ShowEdge.Show("", "", "")
+        node = node?.toShow() ?: Shows.ShowEdge.Show("", "", "", "")
     )
 }
 
@@ -19,6 +19,7 @@ fun ShowsQuery.Node.toShow(): Shows.ShowEdge.Show {
     return Shows.ShowEdge.Show(
         id = id,
         title = title,
-        url = url?: ""
+        url = url?: "",
+        standFirst = standFirst?: ""
     )
 }

@@ -2,4 +2,6 @@
     <string name="app_name">My Radio France</string>
     <string name="stations_title">STATIONS</string>
     <string name="stations_prompt">Choisissez une station pour consulter la liste de ses émissions</string>
+    <string name="shows_title">ÉMISSIONS</string>
+    <string name="shows_prompt">Faites défiler horizontalement pour lire la description</string>
 </resources>
