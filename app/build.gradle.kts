@@ -64,6 +64,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.3.1")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
 
     implementation("com.apollographql.apollo3:apollo-runtime:3.7.4")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Radio France</string>
+    <string name="stations_title">STATIONS</string>
+    <string name="stations_prompt">Choisissez une station pour consulter la liste de ses émissions</string>
 </resources>
