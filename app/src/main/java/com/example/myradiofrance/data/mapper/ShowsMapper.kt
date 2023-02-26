@@ -1,6 +1,7 @@
-package com.example.myradiofrance.data
+package com.example.myradiofrance.data.mapper
 
 import com.example.ShowsQuery
+import com.example.myradiofrance.domain.model.Shows
 
 fun ShowsQuery.Shows.toShows(): Shows {
     return Shows(

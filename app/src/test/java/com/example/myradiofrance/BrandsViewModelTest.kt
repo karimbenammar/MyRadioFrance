@@ -1,9 +1,9 @@
 package com.example.myradiofrance
 
-import com.example.myradiofrance.domain.BrandClient
-import com.example.myradiofrance.domain.GetBrandsUseCase
+import com.example.myradiofrance.domain.repository.BrandRepository
+import com.example.myradiofrance.domain.usecase.GetBrandsUseCase
 import com.example.myradiofrance.fixtures.BrandsFixtures.brandsResult
-import com.example.myradiofrance.presentation.BrandsViewModel
+import com.example.myradiofrance.presentation.viewmodel.BrandsViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class BrandsViewModelTest {
 
     @Mock
-    private lateinit var brandClient: BrandClient
+    private lateinit var brandRepository: BrandRepository
 
     private lateinit var getBrandsUseCase: GetBrandsUseCase
     private lateinit var viewModel: BrandsViewModel
@@ -30,7 +30,7 @@ class BrandsViewModelTest {
 
     @Before
     fun setUp() {
-        getBrandsUseCase = GetBrandsUseCase(brandClient)
+        getBrandsUseCase = GetBrandsUseCase(brandRepository)
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.example.myradiofrance.data
+package com.example.myradiofrance.domain.model
 
 data class Shows(
     val edges: List<ShowEdge>

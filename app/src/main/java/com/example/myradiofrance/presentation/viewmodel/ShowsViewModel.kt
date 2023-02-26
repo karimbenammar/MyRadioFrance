@@ -1,12 +1,11 @@
-package com.example.myradiofrance.presentation
+package com.example.myradiofrance.presentation.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
-import com.example.myradiofrance.data.Shows
-import com.example.myradiofrance.data.StationsEnum
-import com.example.myradiofrance.domain.GetShowsUseCase
+import com.example.myradiofrance.domain.usecase.GetShowsUseCase
+import com.example.myradiofrance.domain.model.Shows
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +21,7 @@ class ShowsViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(ShowsState())
     val state = _state.asStateFlow()
-    val station = savedStateHandle.get<StationsEnum>(BRAND_ID_ARGUMENT) ?: StationsEnum.UNKNOWN__
+    val station = savedStateHandle.get<String>(BRAND_ID_ARGUMENT) ?: UNKNOWN_STATION
 
     init {
         fetchShows(Optional.present(ITEMS_LIMIT), Optional.absent())
@@ -54,5 +53,6 @@ class ShowsViewModel @Inject constructor(
     companion object {
         const val ITEMS_LIMIT = 5
         const val BRAND_ID_ARGUMENT = "brandId"
+        const val UNKNOWN_STATION = "UNKNOWN__"
     }
 }

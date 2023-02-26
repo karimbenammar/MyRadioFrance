@@ -1,9 +1,9 @@
-package com.example.myradiofrance.presentation
+package com.example.myradiofrance.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myradiofrance.data.Brand
-import com.example.myradiofrance.domain.GetBrandsUseCase
+import com.example.myradiofrance.domain.model.Brand
+import com.example.myradiofrance.domain.usecase.GetBrandsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,6 +1,6 @@
 package com.example.myradiofrance.fixtures
 
-import com.example.myradiofrance.data.Shows
+import com.example.myradiofrance.domain.model.Shows
 
 object ShowsFixtures {
     val showsResult = Shows(

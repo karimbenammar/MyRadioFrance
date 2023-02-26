@@ -1,12 +1,14 @@
-package com.example.myradiofrance.data
+package com.example.myradiofrance.data.remote
 
 import com.apollographql.apollo3.ApolloClient
 import com.example.BrandsQuery
-import com.example.myradiofrance.domain.BrandClient
+import com.example.myradiofrance.data.mapper.toBrand
+import com.example.myradiofrance.domain.repository.BrandRepository
+import com.example.myradiofrance.domain.model.Brand
 
-class ApolloBrandClient(
+class BrandRepositoryImpl(
     private val apolloClient: ApolloClient
-): BrandClient {
+): BrandRepository {
 
     override suspend fun getBrands(): List<Brand> {
         return apolloClient

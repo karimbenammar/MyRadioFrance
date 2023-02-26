@@ -1,4 +1,4 @@
-package com.example.myradiofrance.presentation
+package com.example.myradiofrance.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myradiofrance.R
-import com.example.myradiofrance.Screen
+import com.example.myradiofrance.navigation.Screen
 import kotlinx.coroutines.delay
 
 @Composable

@@ -2,11 +2,10 @@ package com.example.myradiofrance
 
 import androidx.lifecycle.SavedStateHandle
 import com.apollographql.apollo3.api.Optional
-import com.example.myradiofrance.data.StationsEnum
-import com.example.myradiofrance.domain.GetShowsUseCase
-import com.example.myradiofrance.domain.ShowsClient
+import com.example.myradiofrance.domain.usecase.GetShowsUseCase
+import com.example.myradiofrance.domain.repository.ShowsRepository
 import com.example.myradiofrance.fixtures.ShowsFixtures
-import com.example.myradiofrance.presentation.ShowsViewModel
+import com.example.myradiofrance.presentation.viewmodel.ShowsViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -24,7 +23,7 @@ import org.mockito.kotlin.eq
 class ShowsViewModelTest {
 
     @Mock
-    private lateinit var showsClient: ShowsClient
+    private lateinit var showsRepository: ShowsRepository
 
     private lateinit var getShowsUseCase: GetShowsUseCase
     private lateinit var viewModel: ShowsViewModel
@@ -35,15 +34,16 @@ class ShowsViewModelTest {
 
     @Before
     fun setUp() {
-        getShowsUseCase = GetShowsUseCase(showsClient)
+        getShowsUseCase = GetShowsUseCase(showsRepository)
     }
 
     @Test
     fun `verify state when initial shows are successfully fetched`() = runTest {
-        Mockito.`when`(getShowsUseCase.execute(any(), any(), any())).thenReturn(ShowsFixtures.showsResult)
+        Mockito.`when`(getShowsUseCase.execute(any(), any(), any()))
+            .thenReturn(ShowsFixtures.showsResult)
 
         val savedStateHandle = SavedStateHandle().apply {
-            set(ShowsViewModel.BRAND_ID_ARGUMENT, StationsEnum.FRANCEINTER)
+            set(ShowsViewModel.BRAND_ID_ARGUMENT, "FRANCEINTER")
         }
 
         viewModel = ShowsViewModel(getShowsUseCase, savedStateHandle)
@@ -57,11 +57,13 @@ class ShowsViewModelTest {
 
     @Test
     fun `verify state when extra shows are successfully fetched`() = runTest {
-        Mockito.`when`(getShowsUseCase.execute(any(), any(), any())).thenReturn(ShowsFixtures.showsResult)
-        Mockito.`when`(getShowsUseCase.execute(any(), any(), eq(Optional.present("3")))).thenReturn(ShowsFixtures.extraShowsResult)
+        Mockito.`when`(getShowsUseCase.execute(any(), any(), any()))
+            .thenReturn(ShowsFixtures.showsResult)
+        Mockito.`when`(getShowsUseCase.execute(any(), any(), eq(Optional.present("3"))))
+            .thenReturn(ShowsFixtures.extraShowsResult)
 
         val savedStateHandle = SavedStateHandle().apply {
-            set(ShowsViewModel.BRAND_ID_ARGUMENT, StationsEnum.FRANCEINTER)
+            set(ShowsViewModel.BRAND_ID_ARGUMENT, "FRANCEINTER")
         }
 
         viewModel = ShowsViewModel(getShowsUseCase, savedStateHandle)

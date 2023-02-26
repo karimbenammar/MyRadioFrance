@@ -1,6 +1,7 @@
-package com.example.myradiofrance.data
+package com.example.myradiofrance.data.mapper
 
 import com.example.BrandsQuery
+import com.example.myradiofrance.domain.model.Brand
 
 fun BrandsQuery.Brand.toBrand(): Brand {
     return Brand(

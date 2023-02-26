@@ -1,6 +1,6 @@
 package com.example.myradiofrance.fixtures
 
-import com.example.myradiofrance.data.Brand
+import com.example.myradiofrance.domain.model.Brand
 
 object BrandsFixtures {
     val brandsResult = listOf(
