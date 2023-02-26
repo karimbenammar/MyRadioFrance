@@ -3,6 +3,7 @@ package com.example.myradiofrance
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +18,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             MyRadioFranceTheme {
-                Navigation(navController = navController)
+                Surface {
+                    Navigation(navController = navController)
+                }
             }
         }
     }
