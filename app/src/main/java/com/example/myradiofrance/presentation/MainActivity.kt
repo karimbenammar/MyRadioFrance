@@ -1,4 +1,4 @@
-package com.example.myradiofrance
+package com.example.myradiofrance.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -8,12 +8,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.myradiofrance.presentation.screen.BrandsScreen
-import com.example.myradiofrance.presentation.viewmodel.BrandsViewModel
-import com.example.myradiofrance.presentation.screen.ShowsScreen
-import com.example.myradiofrance.presentation.viewmodel.ShowsViewModel
-import com.example.myradiofrance.presentation.viewmodel.ShowsViewModel.Companion.BRAND_ID_ARGUMENT
-import com.example.myradiofrance.presentation.screen.SplashScreen
+import com.example.myradiofrance.presentation.brands.BrandsScreen
+import com.example.myradiofrance.presentation.brands.BrandsViewModel
+import com.example.myradiofrance.presentation.shows.ShowsScreen
+import com.example.myradiofrance.presentation.shows.ShowsViewModel
+import com.example.myradiofrance.presentation.shows.ShowsViewModel.Companion.BRAND_ID_ARGUMENT
+import com.example.myradiofrance.presentation.splash.SplashScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {

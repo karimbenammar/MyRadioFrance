@@ -1,11 +1,12 @@
-package com.example.myradiofrance.presentation.viewmodel
+package com.example.myradiofrance.presentation.shows
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
-import com.example.myradiofrance.domain.usecase.GetShowsUseCase
 import com.example.myradiofrance.domain.model.Shows
+import com.example.myradiofrance.domain.usecase.GetShowsUseCase
+import com.example.myradiofrance.domain.util.coFold
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,24 +31,28 @@ class ShowsViewModel @Inject constructor(
     fun fetchShows(limit: Optional<Int?>, after: Optional<String?>) {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            _state.update {
-                it.copy(
-                    shows = it.shows.copy(
-                        edges = it.shows.edges + getShowsUseCase.execute(
-                            station,
-                            limit,
-                            after
-                        ).edges
-                    ),
-                    isLoading = false
-                )
-            }
+
+            getShowsUseCase.execute(station, limit, after).coFold({ shows ->
+                _state.update {
+                    it.copy(
+                        shows = it.shows?.copy(
+                            edges = it.shows.edges + shows.edges
+                        ) ?: shows,
+                        error = null
+                    )
+                }
+            }, { failure ->
+                _state.update { it.copy(shows = null, error = failure.message) }
+            })
+
+            _state.update { it.copy(isLoading = false) }
         }
     }
 
     data class ShowsState(
         val isLoading: Boolean = false,
-        val shows: Shows = Shows(emptyList())
+        val shows: Shows? = null,
+        val error: String? = null
     )
 
     companion object {

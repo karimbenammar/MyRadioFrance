@@ -1,4 +1,4 @@
-package com.example.myradiofrance.presentation.screen
+package com.example.myradiofrance.presentation.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.example.myradiofrance.presentation.component
+package com.example.myradiofrance.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun HeaderScreen(
+fun Header(
     navController: NavController,
     title: String
 ) {
