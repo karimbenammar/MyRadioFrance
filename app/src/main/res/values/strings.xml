@@ -4,4 +4,5 @@
     <string name="stations_prompt">Choisissez une station pour consulter la liste de ses émissions</string>
     <string name="shows_title">ÉMISSIONS</string>
     <string name="shows_prompt">Faites défiler horizontalement pour lire la description</string>
+    <string name="graphql_x_token">84c107b0-22f0-4958-883d-381edaa54174</string>
 </resources>

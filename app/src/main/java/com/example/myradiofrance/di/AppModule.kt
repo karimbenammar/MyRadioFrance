@@ -1,6 +1,8 @@
 package com.example.myradiofrance.di
 
+import android.content.Context
 import com.apollographql.apollo3.ApolloClient
+import com.example.myradiofrance.R
 import com.example.myradiofrance.data.remote.BrandRepositoryImpl
 import com.example.myradiofrance.data.remote.ShowsRepositoryImpl
 import com.example.myradiofrance.domain.repository.BrandRepository
@@ -10,6 +12,7 @@ import com.example.myradiofrance.domain.usecase.GetShowsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -19,10 +22,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApolloClient(): ApolloClient {
-        return ApolloClient.Builder()
-            .serverUrl("https://openapi.radiofrance.fr/v1/graphql?x-token=e59800c2-7e6d-4426-98b4-8a389c189569")
-            .build()
+    fun provideApolloClient(@ApplicationContext context: Context): ApolloClient {
+        val token = context.resources.getString(R.string.graphql_x_token)
+        return ApolloClient.Builder().serverUrl(
+            "https://openapi.radiofrance.fr/v1/graphql?x-token=${token}"
+        ).build()
     }
 
     @Provides
