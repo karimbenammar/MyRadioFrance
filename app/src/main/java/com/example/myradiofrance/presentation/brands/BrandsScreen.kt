@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,32 +26,30 @@ fun BrandsScreen(
     navController: NavController,
     state: BrandsViewModel.BrandsState
 ) {
-    Surface {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = stringResource(R.string.stations_title),
-                style = typography.h4
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = stringResource(R.string.stations_prompt),
-                style = typography.body2
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            state.brands?.let {
-                BrandsList(state.brands, navController)
-            }
-            state.error?.let {
-                ErrorMessage(it)
-            }
-            if (state.isLoading) {
-                ProgressIndicator()
-            }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(R.string.stations_title),
+            style = typography.h4
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = stringResource(R.string.stations_prompt),
+            style = typography.body2
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        state.brands?.let {
+            BrandsList(state.brands, navController)
+        }
+        state.error?.let {
+            ErrorMessage(it)
+        }
+        if (state.isLoading) {
+            ProgressIndicator()
         }
     }
 }

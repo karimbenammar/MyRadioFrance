@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,33 +28,36 @@ fun ShowsScreen(
     onPaginate: (Optional<Int?>, Optional<String?>) -> Unit,
     navController: NavController
 ) {
-    Surface {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Header(navController = navController, title = stringResource(R.string.shows_title))
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Header(navController = navController, title = stringResource(R.string.shows_title))
 
-            Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-            Text(
-                text = stringResource(R.string.shows_prompt),
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 8.dp)
+        Text(
+            text = stringResource(R.string.shows_prompt),
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.padding(start = 8.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+        state.error?.let {
+            ErrorMessage(message = it)
+        }
+        val infiniteListState = rememberLazyListState()
+        state.shows?.let {
+            ShowsList(
+                state = state,
+                infiniteListState = infiniteListState,
+                shows = it,
+                onPaginate = onPaginate
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-            state.error?.let {
-                ErrorMessage(message = it)
-            }
-            val infiniteListState = rememberLazyListState()
-            state.shows?.let {
-                ShowsList(state = state, infiniteListState = infiniteListState, shows = it, onPaginate = onPaginate)
-            }
-            if (state.isLoading) {
-                ProgressIndicator()
-            }
+        }
+        if (state.isLoading) {
+            ProgressIndicator()
         }
     }
 }

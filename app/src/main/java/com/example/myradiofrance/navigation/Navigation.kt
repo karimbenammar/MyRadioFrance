@@ -13,14 +13,10 @@ import com.example.myradiofrance.presentation.brands.BrandsViewModel
 import com.example.myradiofrance.presentation.shows.ShowsScreen
 import com.example.myradiofrance.presentation.shows.ShowsViewModel
 import com.example.myradiofrance.presentation.shows.ShowsViewModel.Companion.BRAND_ID_ARGUMENT
-import com.example.myradiofrance.presentation.splash.SplashScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Splash.route) {
-        composable(Screen.Splash.route) {
-            SplashScreen(navController)
-        }
+    NavHost(navController = navController, startDestination = Screen.Brands.route) {
         composable(Screen.Brands.route) {
             val viewModel = hiltViewModel<BrandsViewModel>()
             val state = viewModel.state.collectAsState()
