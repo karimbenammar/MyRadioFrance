@@ -4,7 +4,6 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import com.example.ShowsQuery
 import com.example.myradiofrance.domain.ShowsClient
-import com.example.type.StationsEnum
 
 class ApolloShowsClient(
     private val apolloClient: ApolloClient
@@ -16,7 +15,7 @@ class ApolloShowsClient(
         after: Optional<String?>
     ): Shows {
         return apolloClient
-            .query(ShowsQuery(station, limit, after))
+            .query(ShowsQuery(station.toStationEnum(), limit, after))
             .execute()
             .data
             ?.shows

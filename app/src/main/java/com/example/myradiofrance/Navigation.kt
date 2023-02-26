@@ -8,13 +8,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.myradiofrance.data.StationsEnum
 import com.example.myradiofrance.presentation.BrandsScreen
 import com.example.myradiofrance.presentation.BrandsViewModel
 import com.example.myradiofrance.presentation.ShowsScreen
 import com.example.myradiofrance.presentation.ShowsViewModel
 import com.example.myradiofrance.presentation.ShowsViewModel.Companion.BRAND_ID_ARGUMENT
 import com.example.myradiofrance.presentation.SplashScreen
-import com.example.type.StationsEnum
 
 @Composable
 fun Navigation(navController: NavHostController) {

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
 import com.example.myradiofrance.data.Shows
+import com.example.myradiofrance.data.StationsEnum
 import com.example.myradiofrance.domain.GetShowsUseCase
-import com.example.type.StationsEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

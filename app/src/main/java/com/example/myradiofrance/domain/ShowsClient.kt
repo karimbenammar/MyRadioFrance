@@ -2,7 +2,7 @@ package com.example.myradiofrance.domain
 
 import com.apollographql.apollo3.api.Optional
 import com.example.myradiofrance.data.Shows
-import com.example.type.StationsEnum
+import com.example.myradiofrance.data.StationsEnum
 
 interface ShowsClient {
     suspend fun getShows(
